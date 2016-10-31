@@ -2,9 +2,11 @@
   resource :session, controller: "clearance/sessions", only: [:create]
 
   resources :users, controller: "clearance/users", only: [:create] do
-    resource :password,
+    resource(
+      :password,
       controller: "clearance/passwords",
-      only: [:create, :edit, :update]
+      only: [:create, :edit, :update],
+    )
   end
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
